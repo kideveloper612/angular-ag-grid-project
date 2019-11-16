@@ -1,0 +1,6 @@
+<div>
+  <ag-grid-angular #agGrid style="width: 100%; height: 500px;" id="myGrid" class="ag-theme-balham" [modules]="modules"
+    [columnDefs]="columnDefs" [enableRangeSelection]="true" [allowContextMenuWithControlKey]="true"
+    [getContextMenuItems]="getContextMenuItems" [rowData]="rowData" (gridReady)="onGridReady($event)">
+  </ag-grid-angular>
+</div>

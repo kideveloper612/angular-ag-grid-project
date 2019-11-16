@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row text-center mt-5">
+    <div class="col-12">
+      <ag-grid-angular
+        #agGrid
+        style="width: 100%; height: 800px;"
+        class="ag-theme-balham"
+        [pagination]="enablePagination"
+        [paginationPageSize]="paginationPageSize"
+        [enableFilter]="enableFilter"
+        [enableSorting]="enableSort"
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        [getRowHeight]="getRowHeight"
+        [modules]="modules"
+        [columnDefs]="columnDefs"
+        [enableRangeSelection]="true"
+        [allowContextMenuWithControlKey]="true"
+        [getContextMenuItems]="getContextMenuItems"
+        [frameworkComponents]="frameworkComponents"
+        rowSelection="multiple"
+        (rowSelected)="onRowSelected($event)"
+        (selectionChanged)="onSelectionChanged($event)"
+        (gridReady)="onGridReady($event)">
+      </ag-grid-angular>
+    </div>
+  </div>
+  <button (click)="hideColumn()" style="width:200px;">
+    Hide Column
+  </button>
+  <button (click)="showColumn()" style="width:200px;">
+    Show Column
+  </button>
+  <div class="row mt-2">
+    <div class="col-3">
+      Total Selected Count : {{count}}
+    </div>
+    <div class="col-3">
+      Total loaded Count : {{totalCount}}
+    </div>
+  </div>
+  <input class="opacity-0 position-fixed" id="contextCopyId" />
+  <a href="" class="" id="youtubeLink"></a>
+</div>
