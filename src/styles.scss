@@ -2,3 +2,21 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import 'ag-grid-community/dist/styles/ag-grid.css';
 @import 'ag-grid-community/dist/styles/ag-theme-balham.css';
+
+
+.custom-grid {
+  .ag-center-cols-container {
+    width: 100% !important;
+  }
+
+  .ag-header-cell-label{
+    display: initial!important;
+  }
+  .ag-cell{
+    white-space: initial;
+    font-size: 1.2em;
+  }
+  .ag-header-cell{
+    font-size: 1.4em;
+  }
+}

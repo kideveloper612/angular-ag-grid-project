@@ -30,8 +30,9 @@ export class GridComponent implements OnInit {
   public _postProcessPopup: any;
   public totalCount: any;
   public count: number = 0;
-  gridColumnApi: any;
-  modules = AllModules;
+  public gridColumnApi: any;
+  public modules = AllModules;
+  public checkBoxStatus: boolean = false;
 
   constructor(private apiService: ApiService) {
 
@@ -43,11 +44,6 @@ export class GridComponent implements OnInit {
       }
     }
 
-    function VideoClickEventHandler(event: any){
-      console.log("Test");
-    }
-
-
     this.columnDefs = [
       {
         field: 'RowSelect',
@@ -55,8 +51,8 @@ export class GridComponent implements OnInit {
         headerCheckboxSelection: true,
         headerCheckboxSelectionFilteredOnly: true,
         checkboxSelection: true,
-        headerCellRenderer: selectAllRenderer,
-        onRowClicked: RowClickEventHandler,
+        cellRenderer: selectAllRenderer,
+        onCellClicked: RowClickEventHandler,
         width: 40
       },
       {
@@ -68,7 +64,7 @@ export class GridComponent implements OnInit {
       {
         headerName: 'Published on',
         field: 'publishedAt',
-        width: 300,
+        width: 250,
       },
       {
         headerName: 'Video Title',
@@ -79,7 +75,7 @@ export class GridComponent implements OnInit {
       {
         headerName: 'Description',
         field: 'description',
-        width: 300,
+        width: 350,
       }
     ];
 
@@ -131,7 +127,6 @@ export class GridComponent implements OnInit {
   }
 
   onGridReady(params: any) {
-    console.log('grid ready: ', params);
     this.gridColumnApi = params.columnApi;
   }
 
@@ -139,7 +134,6 @@ export class GridComponent implements OnInit {
   }
 
   onRowSelected(event: any) {
-    console.log(event.node.selected);
     if (event.node.selected) this.count += 1;
     else this.count -= 1;
   }
@@ -160,12 +154,42 @@ export class GridComponent implements OnInit {
   }
 
   hideColumn() {
-    console.log(this.gridColumnApi);
+    this.checkBoxStatus = false;
     this.gridColumnApi.setColumnsVisible(['RowSelect'], false);
+    let cell = document.getElementsByClassName('ag-cell ag-cell-value') as HTMLCollectionOf<HTMLElement>;
+    let header = document.getElementsByClassName('ag-header-cell') as HTMLCollectionOf<HTMLElement>;
+    if (cell.length != 0) {
+      for(let index in cell) {
+        let remainder = parseInt(index) % 4;
+        if(remainder == 3){
+          cell[index].style.width =("400px");
+          cell[index].style.paddingRight =("20px");
+        }
+      }
+    }
+
+    if(header.length != 0) {
+      header[3].style.width = ("400px");
+    }
   }
 
   showColumn() {
+    this.checkBoxStatus = true;
     this.gridColumnApi.setColumnsVisible(['RowSelect'], true);
+    let cell = document.getElementsByClassName('ag-cell ag-cell-value') as HTMLCollectionOf<HTMLElement>;
+    let header = document.getElementsByClassName('ag-header-cell') as HTMLCollectionOf<HTMLElement>;
+    if (cell.length != 0) {
+      for(let index in cell) {
+        let remainder = parseInt(index) % 4;
+        if(remainder == 3){
+          cell[index].style.width =("350px");
+          cell[index].style.paddingRight =null;
+        }
+      }
+    }
+    if(header.length != 0) {
+      header[3].style.width = ("350px");
+    }
   }
 
   getContextMenuItems(params) {

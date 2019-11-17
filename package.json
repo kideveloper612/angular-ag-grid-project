@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@ag-grid-community/all-modules": "^22.0.0",
     "@ag-grid-enterprise/all-modules": "^22.0.0",
     "@angular/animations": "~8.2.0",
     "@angular/common": "~8.2.0",
@@ -22,7 +23,6 @@
     "@angular/router": "~8.2.0",
     "ag-grid-angular": "^22.0.0",
     "ag-grid-community": "^22.0.0",
-    "ag-grid-enterprise": "^22.0.0",
     "bootstrap": "^4.3.1",
     "jquery": "^3.4.1",
     "popper.js": "^1.16.0",

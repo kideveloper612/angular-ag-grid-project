@@ -55,8 +55,8 @@ export class GridComponent implements OnInit {
         headerCheckboxSelection: true,
         headerCheckboxSelectionFilteredOnly: true,
         checkboxSelection: true,
-        headerCellRenderer: selectAllRenderer,
-        onRowClicked: RowClickEventHandler,
+        cellRenderer: selectAllRenderer,
+        onCellClicked: RowClickEventHandler,
         width: 40
       },
       {

@@ -12,7 +12,6 @@ import { GridComponent } from './pages/grid/grid.component';
 import { ApiService } from './core/services/api.service';
 import { ImageComponent } from './shared/components/image/image.component';
 import { ToolBarComponent } from './shared/components/tool-bar/tool-bar.component';
-import'ag-grid-enterprise';
 
 @NgModule({
   declarations: [
