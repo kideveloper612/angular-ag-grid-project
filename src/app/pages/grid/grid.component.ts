@@ -7,6 +7,7 @@ import { ImageComponent } from '../../shared/components/image/image.component';
 import { AllModules } from "@ag-grid-enterprise/all-modules";
 import "@ag-grid-community/all-modules/dist/styles/ag-grid.css";
 import "@ag-grid-community/all-modules/dist/styles/ag-theme-balham.css";
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-grid',
@@ -23,11 +24,7 @@ export class GridComponent implements OnInit {
   public enablePagination: boolean = true;
   public paginationPageSize: number = 10;
   public context: any;
-  public frameworkComponents: any;
   public getRowHeight: any;
-  public _gridOptions: any;
-  public _getMainMenuItems: any;
-  public _postProcessPopup: any;
   public totalCount: any;
   public count: number = 0;
   public gridColumnApi: any;
@@ -58,7 +55,7 @@ export class GridComponent implements OnInit {
       {
         headerName: '',
         field: 'thumbnails',
-        cellRenderer: 'imageRenderer',
+        cellRendererFramework: ImageComponent,
         width: 150,
       },
       {
@@ -80,9 +77,6 @@ export class GridComponent implements OnInit {
     ];
 
     this.context = { componentParent: this };
-    this.frameworkComponents = {
-      imageRenderer: ImageComponent,
-    };
 
     this.getRowHeight = function (params: any) {
       return params.data.rowHeight;
@@ -108,22 +102,6 @@ export class GridComponent implements OnInit {
       });
       return eHeader;
     }
-
-    this._postProcessPopup = function (params) {
-      if (params.type !== "columnMenu") {
-        return;
-      }
-      var columnId = params.column.getId();
-      if (columnId === "gold") {
-        var ePopup = params.ePopup;
-        var oldTopStr = ePopup.style.top;
-        oldTopStr = oldTopStr.substring(0, oldTopStr.indexOf("px"));
-        var oldTop = parseInt(oldTopStr);
-        var newTop = oldTop + 25;
-        ePopup.style.top = newTop + "px";
-      }
-    };
-
   }
 
   onGridReady(params: any) {
